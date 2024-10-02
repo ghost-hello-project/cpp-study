@@ -3,7 +3,7 @@ call "D:\program\microsoft\vs2022\communtity\VC\Auxiliary\Build\vcvars64.bat"
 if errorlevel 1 (
     echo Warning: Failed to set up the environment. Continuing...
 )
-
+chcp 65001
 if "%1" == "" (
     cmake --preset=win64-release 
     cmake --build --preset=win64-release    

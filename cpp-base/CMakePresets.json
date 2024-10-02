@@ -12,7 +12,8 @@
             "generator": "Ninja",
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER": "cl.exe",
-                "CMAKE_MAKE_PROGRAM": "ninja.exe"
+                "CMAKE_MAKE_PROGRAM": "ninja.exe",
+                "CMAKE_CXX_FLAGS": "/utf-8 -D_UNICODE -DUNICODE"
             }
         },
         {
@@ -30,7 +31,8 @@
             "inherits": "windows-base",
             "binaryDir": "${sourceDir}/build/ninja-debug",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_DEBUG_POSTFIX": "d"
             }
         }
     ],

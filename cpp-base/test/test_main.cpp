@@ -1,9 +1,21 @@
 #include <spdlog/spdlog.h>
 #define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest/doctest.h"
+#include "janna/util/log_util.h"
+
+#if defined(_WIN32) || defined(_WIN64)
+    #include <cstdlib>
+#endif
 
 int main(int argc, char** argv) {
-    spdlog::info("cpp-hello test start...");
+#if defined(_WIN32) || defined(_WIN64)
+    std::system("chcp 65001");
+#endif
+
+    LogUtil::init(spdlog::level::info, "app.log");
+
+    std::shared_ptr<spdlog::logger> log = LogUtil::getLogger("test");
+    SPDLOG_LOGGER_INFO(log, "janna test start...");
 
     doctest::Context context;
 
@@ -21,7 +33,8 @@ int main(int argc, char** argv) {
 
     int res = context.run();  // run
 
-    spdlog::info("cpp-hello test end...");
+    SPDLOG_LOGGER_INFO(log, "janna test end...");
+    spdlog::shutdown();
 
     if (context.shouldExit())  // important - query flags (and --exit) rely on the user doing this
         return res;            // propagate the result of the tests

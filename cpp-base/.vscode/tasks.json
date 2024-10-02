@@ -71,7 +71,13 @@
         {
             "label": "run-release",
             "type": "shell",
-            "command": "cd build/ninja-release/dist/bin && ./janna",
+            "windows": {
+                "type": "process",
+                "command": "${workspaceRoot}/build.bat",
+                "args": [
+                    "run"
+                ]
+            },
             "dependsOn": [
                 "build-release"
             ]

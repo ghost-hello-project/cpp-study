@@ -22,11 +22,21 @@ set(dist_dir ${CMAKE_BINARY_DIR}/dist)
 
 # 二进制文件目录
 set(bin_dir ${dist_dir}/bin)
+set(bin_test_dir ${dist_dir}/test)
 
 # 启动文件目录
 set(sbin_dir ${dist_dir}/sbin)
 
+# 库文件目录
+set(lib_dir ${dist_dir}/lib)
+
+# 日志目录
+set(log_dir ${dist_dir}/logs)
+
 # 内部库
+
+# 工具类库
+set(lib_util_name util)
 
 # 编译相关配置 ###########################################################################################################
 

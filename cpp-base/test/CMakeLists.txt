@@ -22,7 +22,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 aux_source_directory(. test_srcs)
 add_executable(${PROJECT_NAME} ${test_srcs})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${dist_dir}/test)
+# 链接动态库
+target_link_libraries(${PROJECT_NAME}
+    ${lib_util_name}
+)
+
+# 可执行文件路径
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${bin_test_dir})
 
 # 测试相关配置 ###########################################################################################################
 # 执行所有测试

@@ -7,7 +7,7 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        // "**/build": true,
+        "**/build": true,
         "**/Testing": true,
         "**/vcpkg": true,
         "**/vcpkg_installed": true,
@@ -38,6 +38,16 @@
     "editor.rulers": [
         120
     ],
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            "args": [
+                "-NoExit",
+                "chcp 65001"
+            ]
+        }
+    },
     // 关闭形参显示
     "editor.inlayHints.enabled": "off",
     // clangd 配置
