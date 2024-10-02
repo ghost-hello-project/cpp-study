@@ -1,0 +1,55 @@
+# 指定 cmake 最小版本, 意指 cmake 版本小于指定版本则构建过程终止
+cmake_minimum_required(VERSION 3.26)
+
+# 语言环境配置 ###########################################################################################################
+
+# 语言版本
+set(CMAKE_CXX_STANDARD 17)
+
+# 如果指定的语言版本不受支持, 则构建过程终止
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# 只启用 ISO C++ 标准的编译器标志, 而不使用特定编译器的扩展
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# 项目配置 ##############################################################################################################
+
+# 项目名称和语言
+project(janna LANGUAGES CXX VERSION 1.0.0)
+
+# 发布目录
+set(dist_dir ${CMAKE_BINARY_DIR}/dist)
+
+# 二进制文件目录
+set(bin_dir ${dist_dir}/bin)
+
+# 启动文件目录
+set(sbin_dir ${dist_dir}/sbin)
+
+# 内部库
+
+# 编译相关配置 ###########################################################################################################
+
+# 生成 compile_commands.json
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# 包含全局头文件
+include_directories(${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/third)
+
+# 添加子目录
+add_subdirectory(src)
+
+# 伪目标配置 ############################################################################################################
+
+# 运行程序的伪目标
+# cmake -S . -B build && cmake --build build && cmake --build build --target run
+add_custom_target(run
+    COMMAND ${bin_dir}/${PROJECT_NAME} # 执行的命令
+    WORKING_DIRECTORY ${bin_dir} # 命令的工作目录
+    COMMENT "run application" # 描述
+    VERBATIM # 执行命令时不会对其进行任何转义或处理，而是直接按照命令中的内容执行
+)
+
+# 启用测试 ##############################################################################################################
+enable_testing()
+add_subdirectory(test)

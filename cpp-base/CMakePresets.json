@@ -1,0 +1,47 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 26,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "windows-base",
+            "hidden": true,
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "cl.exe",
+                "CMAKE_MAKE_PROGRAM": "ninja.exe"
+            }
+        },
+        {
+            "name": "win64-release",
+            "displayName": "win 64 release",
+            "inherits": "windows-base",
+            "binaryDir": "${sourceDir}/build/ninja-release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "win64-debug",
+            "displayName": "win 64 debug",
+            "inherits": "windows-base",
+            "binaryDir": "${sourceDir}/build/ninja-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "win64-release",
+            "configurePreset": "win64-release"
+        },
+        {
+            "name": "win64-debug",
+            "configurePreset": "win64-debug"
+        }
+    ]
+}
