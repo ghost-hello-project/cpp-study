@@ -12,6 +12,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # 只启用 ISO C++ 标准的编译器标志, 而不使用特定编译器的扩展
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+if(UNIX)
+    # 将 install_rpath 的设置应用在 build_rpath 上
+    # 避免在开发期间出现动态库找不到的问题
+    set(CMAKE_BUILD_WITH_INSTALL_RPATH True)
+endif()
+
 # 项目配置 ##############################################################################################################
 
 # 项目名称和语言

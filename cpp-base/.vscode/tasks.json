@@ -13,6 +13,10 @@
                     "debug"
                 ]
             },
+            "linux": {
+                "type": "shell",
+                "command": "cmake --preset=linux-debug && cmake --build --preset=linux-debug"
+            }
         },
         // release 构建
         {
@@ -21,6 +25,10 @@
                 "type": "process",
                 "command": "${workspaceRoot}/build.bat"
             },
+            "linux": {
+                "type": "shell",
+                "command": "cmake --preset=linux-release && cmake --build --preset=linux-release"
+            }
         },
         // 清理 debug
         {
@@ -77,6 +85,10 @@
                 "args": [
                     "run"
                 ]
+            },
+            "linux": {
+                "type": "shell",
+                "command": "cd build/ninja-release/dist/bin && ./janna",
             },
             "dependsOn": [
                 "build-release"
